@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Personal Page</title>
+  </head>
+  <body>	
+	<form >
+		<h1><a><%= userid%></a>'s Items</h1>
+		<% if(exist == true) { %>
+			<label> Here are <a><%= userid%>'s orders</a></label>
+		<%} %>
+		<% if(orders) { %>
+			<% orders.forEach((order) => { %>
+				<ul>
+					<li> warehouseID: <%= order.warehouseID %> </li>
+					<li> item: <%= order.item %></li>
+					<li> address: <%= order.address %></li>
+					<li> priority: <%= order.priority %></li>
+					<li> trackingNumber: <%= order.trackingNumber %></li>
+					<form action="/editAddress" method="post">
+						<input type="text" name="editAddress" placeholder="New Address You Want" required>
+						<input type="submit" value="Edit Address" />
+						<input type ="hidden" name = "trackingNumber" value= <%= order.trackingNumber %>></input>
+					</form>
+					<br><br><br>
+				</ul> 
+			 <% }); %> 
+		<%} %>
+	</form>	
+	<!-- user input-->
+	Do you want to go back to the main page?
+	<a href="/" >Go Back</a>
+	<br><br><br>
+  </body>
+</html>

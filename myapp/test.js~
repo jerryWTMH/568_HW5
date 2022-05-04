@@ -1,0 +1,13 @@
+const fs = require('fs')
+var protobuf = require('protocol-buffers')
+
+// pass a proto file as a buffer/string or pass a parsed protobuf-schema object
+var messages = protobuf(fs.readFileSync('ups.proto'))
+
+var buf = messages.UConnect.encode({
+    worldid: 42,
+    trucks: 3,
+    isAmazon: 3
+})
+
+console.log(buf) // should print a buffer
